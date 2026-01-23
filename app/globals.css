@@ -1,0 +1,23 @@
+/* Global styles and Tailwind layers for the memory camera app. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: #f8f1e5;
+  background-image:
+    radial-gradient(1200px 600px at 20% 10%, rgba(196, 140, 106, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(43, 43, 43, 0.08), transparent 55%);
+}
+
+main {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(196, 140, 106, 0.35);
+}
