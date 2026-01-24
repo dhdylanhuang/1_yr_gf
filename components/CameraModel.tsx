@@ -94,6 +94,10 @@ function PlaceholderCamera({ screenTexture, onShutter }: CameraModelProps) {
 
 function GLBCamera({ screenTexture, onShutter }: CameraModelProps) {
   const gltf = useGLTF('/models/camera.glb');
+  const modelRotation = useMemo(
+    () => [0, Math.PI, 0] as [number, number, number],
+    []
+  );
 
   const screenMesh = useMemo(() => {
     // TODO: Update the regex to match your LCD mesh name if different.
@@ -124,8 +128,33 @@ function GLBCamera({ screenTexture, onShutter }: CameraModelProps) {
     }
   }, [screenMesh, screenTexture]);
 
+  useEffect(() => {
+    // Soften specular highlights on the button meshes only.
+    gltf.scene.traverse((obj) => {
+      if (!(obj as THREE.Mesh).isMesh) return;
+      const mesh = obj as THREE.Mesh;
+      if (!/object_16|object_17/i.test(mesh.name)) return;
+      const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+      const nextMaterials = materials.map((material) => {
+        if (!material || !('roughness' in material)) return material;
+        const baseMat = material as THREE.MeshStandardMaterial;
+        const nextMat = baseMat.clone();
+        nextMat.roughness = 1;
+        nextMat.metalness = 0;
+        nextMat.emissive = new THREE.Color('#000000');
+        nextMat.emissiveIntensity = 0;
+        if ('envMapIntensity' in nextMat) {
+          nextMat.envMapIntensity = 0;
+        }
+        nextMat.needsUpdate = true;
+        return nextMat;
+      });
+      mesh.material = nextMaterials.length > 1 ? nextMaterials : nextMaterials[0];
+    });
+  }, [gltf]);
+
   return (
-    <group>
+    <group rotation={modelRotation}>
       <primitive object={gltf.scene} />
       <mesh position={shutterProxy.position} onPointerDown={onShutter}>
         <cylinderGeometry args={[shutterProxy.radius, shutterProxy.radius, shutterProxy.height, 24]} />

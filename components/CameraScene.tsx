@@ -50,7 +50,7 @@ export function CameraScene({ onShutter }: CameraSceneProps) {
 
   const cameraSettings = useMemo(
     () => ({
-      position: [0, 0.2, 4.2] as [number, number, number],
+      position: [0, 0.2, 5] as [number, number, number],
       fov: 42
     }),
     []
@@ -58,8 +58,8 @@ export function CameraScene({ onShutter }: CameraSceneProps) {
 
   return (
     <Canvas camera={cameraSettings} dpr={[1, 1.6]}>
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[3, 4, 5]} intensity={0.9} />
+      <ambientLight intensity={0.06} />
+      <directionalLight position={[3, 3, 3]} intensity={0.0} />
       <CameraRig>
         <group scale={1.2}>
           <CameraModel screenTexture={texture} onShutter={onShutter} />
