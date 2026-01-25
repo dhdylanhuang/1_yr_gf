@@ -101,7 +101,7 @@ export default function HomePage() {
 
   return (
     <main className="px-4 py-6 lg:px-10 lg:py-8">
-      <div className="flex flex-col lg:flex-row gap-6 lg:gap-0">
+      <div className="flex flex-col lg:flex-row gap-6">
         <div
           ref={containerRef}
           className="relative w-full lg:w-3/5 h-[62vh] lg:h-[calc(100vh-4rem)] rounded-3xl overflow-hidden border border-charcoal/10 shadow-soft bg-parchment"
