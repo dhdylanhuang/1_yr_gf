@@ -77,12 +77,12 @@ function findLikelyScreen(root: THREE.Object3D): THREE.Mesh | null {
 }
 
 function applyScreenTexture(mesh: THREE.Mesh, texture: THREE.Texture) {
-  // Reset any flip and wrapping to defaults; then force an unlit material so the texture always shows.
+  // Flip texture vertically only to match GLB UV orientation
   texture.wrapS = THREE.ClampToEdgeWrapping;
   texture.wrapT = THREE.ClampToEdgeWrapping;
-  texture.repeat.set(1, 1);
-  texture.offset.set(0, 0);
-  texture.center.set(0.5, 0.5);
+  texture.repeat.set(1, -1);
+  texture.offset.set(0, 1);
+  texture.center.set(0, 0);
   texture.rotation = 0;
   texture.flipY = false;
   texture.needsUpdate = true;

@@ -87,23 +87,26 @@ export function useScreenTexture(memory: Memory) {
       }
 
       const stamp = formatMemoryStamp(memory.takenAtISO, memory.place);
-      ctx.font = '20px "Sora", sans-serif';
-      const paddingX = 16;
+      ctx.font = 'bold 32px -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif';
+      const paddingX = 24;
       const textWidth = ctx.measureText(stamp).width;
       const boxWidth = textWidth + paddingX * 2;
-      const boxHeight = 36;
-      const x = CANVAS_WIDTH - boxWidth - 28;
-      const y = CANVAS_HEIGHT - boxHeight - 28;
+      const boxHeight = 56;
+      const x = CANVAS_WIDTH - boxWidth - 40;
+      const y = CANVAS_HEIGHT - boxHeight - 140;
 
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
-      drawRoundedRect(ctx, x, y, boxWidth, boxHeight, 12);
+      // Draw semi-transparent black background box
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+      drawRoundedRect(ctx, x, y, boxWidth, boxHeight, 14);
       ctx.fill();
 
-      ctx.fillStyle = '#fdf7ef';
+      // Draw white text
+      ctx.fillStyle = '#FFFFFF';
       ctx.textBaseline = 'middle';
       ctx.textAlign = 'left';
-      ctx.fillText(stamp, x + paddingX, y + boxHeight / 2 + 1);
+      ctx.fillText(stamp, x + paddingX, y + boxHeight / 2);
 
+      console.log('[ScreenTexture] Drew stamp:', stamp, 'at', { x, y, boxWidth, boxHeight });
       texture.needsUpdate = true;
     };
 
