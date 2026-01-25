@@ -13,9 +13,9 @@ export const memories: Memory[] = [
     id: 'memory-1',
     src: '/images/memories/1.jpg',
     takenAtISO: '2024-01-12T09:20:00Z',
-    place: 'Lisbon, PT',
+    place: 'Glasgow, UK',
     caption: 'First light over the tiled rooftops and a slow espresso to match.',
-    mapSrc: '/images/memories/1.jpg'
+    mapSrc: '/images/locations/glasgow.png'
   },
   {
     id: 'memory-2',
