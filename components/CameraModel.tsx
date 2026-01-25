@@ -42,24 +42,65 @@ function findMeshByName(root: THREE.Object3D, pattern: RegExp): THREE.Mesh | nul
   return found;
 }
 
+function findLikelyScreen(root: THREE.Object3D): THREE.Mesh | null {
+  let best: { mesh: THREE.Mesh; score: number } | null = null;
+  const targetAspect = 4 / 3;
+
+  root.traverse((obj) => {
+    if (!(obj as THREE.Mesh).isMesh) return;
+    const mesh = obj as THREE.Mesh;
+    const box = new THREE.Box3().setFromObject(mesh);
+    const size = new THREE.Vector3();
+    box.getSize(size);
+    const area = size.x * size.y;
+    const maxSide = Math.max(size.x, size.y);
+    const minSide = Math.min(size.x, size.y);
+    const depth = Math.min(size.z, minSide);
+
+    if (!isFinite(area) || area === 0) return;
+    // Prefer thin, rectangular surfaces with ~4:3 or 3:4 ratio.
+    const aspect = maxSide / (minSide || 1e-6);
+    const aspectScore = Math.min(
+      Math.abs(aspect - targetAspect),
+      Math.abs(aspect - 1 / targetAspect)
+    );
+    const thinness = depth / maxSide;
+    if (thinness > 0.15) return; // skip chunky parts of the model
+
+    const score = aspectScore + thinness * 0.5 - Math.log(area + 1e-6) * 0.001;
+    if (!best || score < best.score) {
+      best = { mesh, score };
+    }
+  });
+
+  return best?.mesh ?? null;
+}
+
 function applyScreenTexture(mesh: THREE.Mesh, texture: THREE.Texture) {
-  const material = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
-  if (material && 'map' in material) {
-    (material as THREE.MeshStandardMaterial).map = texture;
-    (material as THREE.MeshStandardMaterial).emissive = new THREE.Color('#ffffff');
-    (material as THREE.MeshStandardMaterial).emissiveIntensity = 0.5;
-    (material as THREE.MeshStandardMaterial).emissiveMap = texture;
-    (material as THREE.MeshStandardMaterial).toneMapped = false;
-    material.needsUpdate = true;
-  } else {
-    mesh.material = new THREE.MeshStandardMaterial({
-      map: texture,
-      emissive: new THREE.Color('#ffffff'),
-      emissiveIntensity: 0.5,
-      emissiveMap: texture,
-      toneMapped: false
-    });
+  // Reset any flip and wrapping to defaults; then force an unlit material so the texture always shows.
+  texture.wrapS = THREE.ClampToEdgeWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+  texture.repeat.set(1, 1);
+  texture.offset.set(0, 0);
+  texture.center.set(0.5, 0.5);
+  texture.rotation = 0;
+  texture.flipY = false;
+  texture.needsUpdate = true;
+
+  const basicMat = new THREE.MeshBasicMaterial({
+    map: texture,
+    toneMapped: false,
+    side: THREE.DoubleSide
+  });
+
+  const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+  if (materials.length === 0 || !materials[0]) {
+    mesh.material = basicMat;
+    return;
   }
+
+  // Replace every sub-material with the basic material so all faces of the screen share it.
+  mesh.material = materials.length === 1 ? basicMat : materials.map(() => basicMat.clone());
 }
 
 function PlaceholderCamera({ screenTexture, onShutter }: CameraModelProps) {
@@ -100,8 +141,15 @@ function GLBCamera({ screenTexture, onShutter }: CameraModelProps) {
   );
 
   const screenMesh = useMemo(() => {
-    // TODO: Update the regex to match your LCD mesh name if different.
-    return findMeshByName(gltf.scene, /screen|lcd/i);
+    const byName = findMeshByName(gltf.scene, /screen|lcd|display|panel|object_12/i);
+    if (byName) return byName;
+    const byShape = findLikelyScreen(gltf.scene);
+    if (!byShape) {
+      console.warn('[CameraModel] Screen mesh not found in GLB');
+    } else {
+      console.warn('[CameraModel] Screen mesh found heuristically:', byShape.name);
+    }
+    return byShape;
   }, [gltf]);
 
   const shutterProxy = useMemo(() => {
@@ -123,9 +171,8 @@ function GLBCamera({ screenTexture, onShutter }: CameraModelProps) {
   }, [gltf]);
 
   useEffect(() => {
-    if (screenMesh && screenTexture) {
-      applyScreenTexture(screenMesh, screenTexture);
-    }
+    if (!screenMesh || !screenTexture) return;
+    applyScreenTexture(screenMesh, screenTexture);
   }, [screenMesh, screenTexture]);
 
   useEffect(() => {
