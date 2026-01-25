@@ -37,7 +37,7 @@ export function SidePanel({ memory, index, total }: SidePanelProps) {
               </div>
             </div>
             {memory.mapSrc ? (
-              <div className="w-32 h-20 rounded-lg overflow-hidden border border-charcoal/15">
+              <div className="w-128 h-40 rounded-lg overflow-hidden border border-charcoal/15">
                 <img
                   src={memory.mapSrc}
                   alt={`${memory.place} map`}
