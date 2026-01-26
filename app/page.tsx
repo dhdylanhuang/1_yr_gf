@@ -101,6 +101,11 @@ export default function HomePage() {
 
   return (
     <main className="px-4 py-6 lg:px-10 lg:py-8">
+      <div className="mb-6 text-center lg:text-left">
+        <h1 className="text-3xl lg:text-4xl font-display text-charcoal">
+          Happy Valentine&apos;s Day and One Year ! 🌹
+        </h1>
+      </div>
       <div className="flex flex-col lg:flex-row gap-6">
         <div
           ref={containerRef}

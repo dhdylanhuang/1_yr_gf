@@ -12,10 +12,10 @@ export const memories: Memory[] = [
   {
     id: 'memory-1',
     src: '/images/memories/1.jpg',
-    takenAtISO: '2024-01-12T09:20:00Z',
+    takenAtISO: '2025-02-18T09:20:00Z',
     place: 'Glasgow, UK',
     caption: 'First light over the tiled rooftops and a slow espresso to match.',
-    mapSrc: '/images/locations/glasgow.png'
+    mapSrc: '/images/locations/glasgow.jpeg'
   },
   {
     id: 'memory-2',
