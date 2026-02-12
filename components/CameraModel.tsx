@@ -43,7 +43,8 @@ function findMeshByName(root: THREE.Object3D, pattern: RegExp): THREE.Mesh | nul
 }
 
 function findLikelyScreen(root: THREE.Object3D): THREE.Mesh | null {
-  let best: { mesh: THREE.Mesh; score: number } | null = null;
+  let bestMesh: THREE.Mesh | null = null;
+  let bestScore = Number.POSITIVE_INFINITY;
   const targetAspect = 4 / 3;
 
   root.traverse((obj) => {
@@ -68,12 +69,13 @@ function findLikelyScreen(root: THREE.Object3D): THREE.Mesh | null {
     if (thinness > 0.15) return; // skip chunky parts of the model
 
     const score = aspectScore + thinness * 0.5 - Math.log(area + 1e-6) * 0.001;
-    if (!best || score < best.score) {
-      best = { mesh, score };
+    if (score < bestScore) {
+      bestScore = score;
+      bestMesh = mesh;
     }
   });
 
-  return best?.mesh ?? null;
+  return bestMesh;
 }
 
 function applyScreenTexture(mesh: THREE.Mesh, texture: THREE.Texture) {
