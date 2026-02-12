@@ -147,7 +147,7 @@ export const memories: Memory[] = [
   },
   {
     id: 'memory-18',
-    src: '/images/memories/18.HEIC',
+    src: '/images/memories/18.jpg',
     takenAtISO: '2026-01-02T08:15:00Z',
     place: 'Glasgow, UK',
     caption: 'Warm bread, marigolds, and a sleepy plaza waking up.',
