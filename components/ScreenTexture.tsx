@@ -9,18 +9,13 @@ import { formatMemoryStamp } from '../lib/format';
 const CANVAS_WIDTH = 1024;
 const CANVAS_HEIGHT = 768;
 
-function drawImageCover(
+function drawImageStretch(
   ctx: CanvasRenderingContext2D,
   img: HTMLImageElement,
   width: number,
   height: number
 ) {
-  const scale = Math.max(width / img.width, height / img.height);
-  const drawWidth = img.width * scale;
-  const drawHeight = img.height * scale;
-  const dx = (width - drawWidth) / 2;
-  const dy = (height - drawHeight) / 2;
-  ctx.drawImage(img, dx, dy, drawWidth, drawHeight);
+  ctx.drawImage(img, 0, 0, width, height);
 }
 
 function drawRoundedRect(
@@ -80,7 +75,7 @@ export function useScreenTexture(memory: Memory) {
       ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
       if (loadedImage) {
-        drawImageCover(ctx, loadedImage, CANVAS_WIDTH, CANVAS_HEIGHT);
+        drawImageStretch(ctx, loadedImage, CANVAS_WIDTH, CANVAS_HEIGHT);
       } else {
         ctx.fillStyle = '#1f1a15';
         ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
