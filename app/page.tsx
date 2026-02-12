@@ -183,7 +183,7 @@ export default function HomePage() {
       <div className="flex flex-col lg:flex-row gap-6">
         <div
           ref={containerRef}
-          className="relative w-full lg:w-3/5 h-[62vh] lg:h-[calc(100vh-4rem)] rounded-3xl overflow-hidden border border-charcoal/10 shadow-soft bg-parchment"
+          className="relative w-full lg:w-3/5 h-[40vh] sm:h-[62vh] lg:h-[calc(100vh-4rem)] rounded-3xl overflow-hidden border border-charcoal/10 shadow-soft bg-parchment"
           style={{ touchAction: 'pan-y' }}
         >
           <CameraScene onShutter={handleShutter} />
