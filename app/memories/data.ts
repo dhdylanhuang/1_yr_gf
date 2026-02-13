@@ -28,7 +28,7 @@ export const memories: Memory[] = [
   },
   {
     id: 'memory-3',
-    src: '/images/memories/3.jpg',
+    src: '/images/memories/3.jpeg',
     takenAtISO: '2025-03-18T11:05:00Z',
     place: 'Glasgow, UK',
     caption: 'Spice stalls and sun-faded maps tucked in a leather notebook.',
