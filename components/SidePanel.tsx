@@ -48,6 +48,15 @@ export function SidePanel({ memory, index, total }: SidePanelProps) {
             <p className="text-base leading-relaxed text-charcoal/90">
               {memory.caption}
             </p>
+            {memory.songSrc ? (
+              <div className="w-128 h-40 rounded-lg overflow-hidden border border-charcoal/15">
+                <img
+                  src={memory.songSrc}
+                  alt={`${memory.place} song artwork`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ) : null}
           </motion.div>
         </AnimatePresence>
       </div>

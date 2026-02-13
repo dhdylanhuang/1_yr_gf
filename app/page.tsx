@@ -11,7 +11,7 @@ import { useGallery } from '../store/useGallery';
 const SWIPE_THRESHOLD = 80;
 const SWIPE_COOLDOWN_MS = 350;
 const INTRO_LINES = [
-  "Happy Valentine’s Day Kopjetjie!",
+  "Happy Valentine's Day Kopjetjie!",
 ];
 const TYPE_SPEED_MS = 200;
 

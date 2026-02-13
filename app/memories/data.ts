@@ -6,6 +6,7 @@ export type Memory = {
   place: string;
   caption: string;
   mapSrc?: string;
+  songSrc?: string;
 };
 
 export const memories: Memory[] = [

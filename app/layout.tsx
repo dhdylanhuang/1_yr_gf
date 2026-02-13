@@ -1,9 +1,9 @@
 // Root layout with global fonts and metadata for the app router.
 import type { Metadata } from 'next';
-import { Fraunces, Sora } from 'next/font/google';
+import { Playfair_Display, Sora } from 'next/font/google';
 import './globals.css';
 
-const displayFont = Fraunces({
+const displayFont = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-display',
   weight: ['400', '600', '700']
@@ -16,8 +16,8 @@ const bodyFont = Sora({
 });
 
 export const metadata: Metadata = {
-  title: 'Memory Camera',
-  description: 'A 3D camera gallery with swipeable memories.'
+  title: 'Happy 1 Year Beb <3',
+  description: 'Our year together in memories and moments.'
 };
 
 export default function RootLayout({
