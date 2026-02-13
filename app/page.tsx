@@ -14,6 +14,7 @@ const INTRO_LINES = [
   "Happy Valentine's Day Kopjetjie!",
 ];
 const TYPE_SPEED_MS = 200;
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 function preloadImage(src: string) {
   const img = new Image();
@@ -48,7 +49,7 @@ export default function HomePage() {
   }, [prev]);
 
   useEffect(() => {
-    audioRef.current = new Audio('/audio/shutter.mp3');
+    audioRef.current = new Audio(`${BASE_PATH}/audio/shutter.mp3`);
     audioRef.current.preload = 'auto';
   }, []);
 
