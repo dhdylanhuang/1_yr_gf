@@ -6,6 +6,8 @@ const nextConfig = {
   reactStrictMode: true,
   output: "export",
   trailingSlash: true,
+  basePath: isProd && repo ? `/${repo}` : "",
+  assetPrefix: isProd && repo ? `/${repo}/` : "",
 };
 
 module.exports = nextConfig;
