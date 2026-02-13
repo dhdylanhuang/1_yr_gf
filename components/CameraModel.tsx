@@ -10,6 +10,9 @@ type CameraModelProps = {
   onShutter?: () => void;
 };
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+const MODEL_PATH = `${BASE_PATH}/models/camera.glb`;
+
 class ModelErrorBoundary extends React.Component<
   { fallback: React.ReactNode; children?: React.ReactNode },
   { hasError: boolean }
@@ -136,7 +139,7 @@ function PlaceholderCamera({ screenTexture, onShutter }: CameraModelProps) {
 }
 
 function GLBCamera({ screenTexture, onShutter }: CameraModelProps) {
-  const gltf = useGLTF('/models/camera.glb');
+  const gltf = useGLTF(MODEL_PATH);
   const modelRotation = useMemo(
     () => [0, Math.PI, 0] as [number, number, number],
     []
@@ -225,4 +228,4 @@ export function CameraModel({ screenTexture, onShutter }: CameraModelProps) {
   );
 }
 
-useGLTF.preload('/models/camera.glb');
+useGLTF.preload(MODEL_PATH);
