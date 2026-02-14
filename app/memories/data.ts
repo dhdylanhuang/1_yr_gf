@@ -181,6 +181,13 @@ export const memories: Memory[] = [
     place: 'Glasgow, UK',
     caption: 'Warm bread, marigolds, and a sleepy plaza waking up.',
     mapSrc: withBasePath('/images/locations/21.jpg')
-  },  
-
+  }, 
+  {
+    id: 'memory-22',
+    src: withBasePath('/images/memories/22.jpg'),
+    takenAtISO: '2026-02-14T08:15:00Z',
+    place: 'Glasgow, UK',
+    caption: 'Warm bread, marigolds, and a sleepy plaza waking up.',
+    mapSrc: withBasePath('/images/locations/22.jpg')
+  },
 ];
