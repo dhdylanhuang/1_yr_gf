@@ -45,7 +45,7 @@ export function SidePanel({ memory, index, total }: SidePanelProps) {
                 />
               </div>
             ) : null}
-            <p className="text-base leading-relaxed text-charcoal/90">
+            <p className="whitespace-pre-line text-base leading-relaxed text-charcoal/90">
               {memory.caption}
             </p>
             {memory.songSrc ? (
