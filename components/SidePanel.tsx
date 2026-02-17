@@ -13,8 +13,8 @@ type SidePanelProps = {
 
 export function SidePanel({ memory, index, total }: SidePanelProps) {
   return (
-    <aside className="w-full lg:w-2/5 lg:sticky lg:top-0 h-[calc(90vh-4rem)] flex items-stretch">
-      <div className="w-full bg-parchment/80 backdrop-blur-sm border border-charcoal/10 shadow-soft p-6 lg:p-10">
+    <aside className="w-full lg:w-2/5 lg:sticky lg:top-0 min-h-[calc(90vh-4rem)] lg:h-[calc(90vh-4rem)] flex items-stretch">
+      <div className="w-full bg-parchment/80 backdrop-blur-sm border border-charcoal/10 shadow-soft p-6 lg:p-10 overflow-y-auto">
         <div className="text-xs uppercase tracking-[0.2em] text-charcoal/60 mb-4">
           #{index + 1} of {total}
         </div>
