@@ -8,7 +8,7 @@ import { CameraScene } from '../components/CameraScene';
 import { SidePanel } from '../components/SidePanel';
 import { useGallery } from '../store/useGallery';
 
-const SWIPE_THRESHOLD = 70;
+const SWIPE_THRESHOLD = 30;
 const SWIPE_COOLDOWN_MS = 400;
 const INTRO_LINES = [
   "Happy One Year Viv!",
