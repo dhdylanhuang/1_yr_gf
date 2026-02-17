@@ -8,10 +8,16 @@ import { CameraScene } from '../components/CameraScene';
 import { SidePanel } from '../components/SidePanel';
 import { useGallery } from '../store/useGallery';
 
-const SWIPE_THRESHOLD = 80;
-const SWIPE_COOLDOWN_MS = 350;
+const SWIPE_THRESHOLD = 70;
+const SWIPE_COOLDOWN_MS = 300;
 const INTRO_LINES = [
-  "Happy Valentine's Day Kopjetjie!",
+  "Happy One Year Viv!",
+  "It's been an incredible first year together babe, you\'ve added so much colour into my life, nothing ever feels dull with you around.",
+  "I wish you could see yourself through my eyes for a day, you\'d be amazed at how precious you are to me, how you make it all look so easy.",
+  "I thought I\'d give you a sneak peek into our year together through my camera...",
+  "I must say, not every moment, even the best ones, are going to be here, but not every moment is captured in a photo, some are best captured in memory.",
+  "Now this should work on both cellphone and laptop, but a bigger screen might be better.",
+  "When you\'re ready, get out your favourite love song, press Next, hover your mouse over the camera then swipe or use the arrow keys to navigate, enjoy!" 
 ];
 const TYPE_SPEED_MS = 200;
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
@@ -176,7 +182,7 @@ export default function HomePage() {
       ) : null}
       <div className="mb-6 text-center lg:text-left">
         <h1 className="text-3xl lg:text-4xl font-display text-charcoal">
-          Happy Valentine&apos;s Day and One Year ! 🌹
+          Happy One Year Kopjetjie ⛰!
         </h1>
       </div>
       <div className="flex flex-col lg:flex-row gap-6">
