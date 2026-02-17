@@ -16,7 +16,6 @@ const INTRO_LINES = [
   "I wish you could see yourself through my eyes for a day, you\'d be amazed at how precious you are to me, how you make it all look so easy.",
   "I thought I\'d give you a sneak peek into our year together through my camera...",
   "I must say, not every moment, even the best ones, are going to be here, but not every moment is captured in a photo, some are best captured in memory.",
-  "Now this should work on both cellphone and laptop, but a bigger screen might be better.",
   "When you\'re ready, get out your favourite love song, press Next, hover your mouse over the camera then swipe or use the arrow keys to navigate, enjoy!" 
 ];
 const TYPE_SPEED_MS = 100;
