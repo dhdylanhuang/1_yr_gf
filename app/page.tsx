@@ -9,7 +9,7 @@ import { SidePanel } from '../components/SidePanel';
 import { useGallery } from '../store/useGallery';
 
 const SWIPE_THRESHOLD = 70;
-const SWIPE_COOLDOWN_MS = 300;
+const SWIPE_COOLDOWN_MS = 250;
 const INTRO_LINES = [
   "Happy One Year Viv!",
   "It's been an incredible first year together babe, you\'ve added so much colour into my life, nothing ever feels dull with you around.",
