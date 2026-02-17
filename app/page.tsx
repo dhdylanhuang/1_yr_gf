@@ -9,7 +9,7 @@ import { SidePanel } from '../components/SidePanel';
 import { useGallery } from '../store/useGallery';
 
 const SWIPE_THRESHOLD = 70;
-const SWIPE_COOLDOWN_MS = 200;
+const SWIPE_COOLDOWN_MS = 400;
 const INTRO_LINES = [
   "Happy One Year Viv!",
   "It's been an incredible first year together babe, you\'ve added so much colour into my life, nothing ever feels dull with you around.",
@@ -19,7 +19,7 @@ const INTRO_LINES = [
   "Now this should work on both cellphone and laptop, but a bigger screen might be better.",
   "When you\'re ready, get out your favourite love song, press Next, hover your mouse over the camera then swipe or use the arrow keys to navigate, enjoy!" 
 ];
-const TYPE_SPEED_MS = 200;
+const TYPE_SPEED_MS = 100;
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 
 function preloadImage(src: string) {
