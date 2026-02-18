@@ -147,7 +147,7 @@ export const memories: Memory[] = [
     src: withBasePath('/images/memories/17.jpg'),
     takenAtISO: '2025-11-22T08:15:00Z',
     place: 'Glasgow, UK',
-    caption: 'I feel so blessed to get to wake up to this view, such an efforlessly gorgeous girl.',
+    caption: 'I feel so blessed to get to wake up to this view, such an effortlessly gorgeous girl.',
     mapSrc: withBasePath('/images/locations/17.jpg')
   },
   {
